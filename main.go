@@ -2,10 +2,17 @@ package main
 
 import (
 	"context"
+	"time"
 )
 
 func main() {
-
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	err := ctx.Err()
+	if err != nil {
+		return
+	}
+	time.Sleep(2 * time.Second)
 }
 
 // FloodControl интерфейс, который нужно реализовать.
